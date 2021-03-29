@@ -10,11 +10,14 @@ import com.project.starter.model.Stats;
 import com.project.starter.service.CheckDNA;
 import com.project.starter.service.StatsService;
 import com.project.starter.util.RenderStats;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+@Slf4j
 @RestController
 public class DNAController {
 
@@ -35,13 +38,19 @@ public class DNAController {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "The matrix must be NxN");
         }
 
-        //Validates if it's mutant
-        if(!checkDNAService.isMutant(dna.getDna())) {
-            statsService.saveOrUpdate(new Stats("not_mutant"));
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Not a mutant");
-        } else {
-            statsService.saveOrUpdate(new Stats("mutant"));
+        try{
+            //Validates if it's mutant
+            if(!checkDNAService.isMutant(dna.getDna())) {
+                statsService.saveOrUpdate(new Stats("not_mutant"));
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Not a mutant");
+            } else {
+                statsService.saveOrUpdate(new Stats("mutant"));
+            }
+        } catch (DataIntegrityViolationException ex) {
+            log.error(ex.getMessage());
+            throw new ResponseStatusException(HttpStatus.IM_USED, "This DNA was already stored!");
         }
+
     }
 
     @GetMapping("/stats")

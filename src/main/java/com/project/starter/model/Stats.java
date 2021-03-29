@@ -21,7 +21,7 @@ public class Stats {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-    @Column
+    @Column(unique = true)
     private String condition;
 
     public Stats(String condition) {
