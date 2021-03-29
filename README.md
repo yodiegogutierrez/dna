@@ -18,7 +18,8 @@ mvn spring-boot:run
 
 Request a post to the URI
 ```sh
-http://localhost:8080/mutant
+http://localhost:8080/mutant (local)
+https://mutants-dna.herokuapp.com/mutant (remote)
 ```
 
 Body's example
@@ -36,7 +37,8 @@ Responses
 
 Also you can get the stats on this URI
 ```sh
-http://localhost:8080/stats
+http://localhost:8080/stats (local)
+https://mutants-dna.herokuapp.com/stats (remote)
 ```
 
 The response should be something like this:
