@@ -1,5 +1,5 @@
 # Magneto's DNA Checker
-> Initial project for any Spring Boot project
+> MercadoLibre's coding exam
 ### What's in?
 This project is created to help Magneto to verify if DNA maps for certain people corresponds to mutant combinations
 
