@@ -33,6 +33,7 @@ Responses
 200 Ok - If DNA corresponds to a mutant
 403 Forbidden - If DNA doesn't corresponds to a mutant
 406 Not Acceptable - If the matrix is not nxn
+226 IM Used - If client tries to save same object twice.
 ```
 
 Also you can get the stats on this URI
