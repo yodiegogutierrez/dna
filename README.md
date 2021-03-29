@@ -33,3 +33,16 @@ Responses
 403 Forbidden - If DNA doesn't corresponds to a mutant
 406 Not Acceptable - If the matrix is not nxn
 ```
+
+Also you can get the stats on this URI
+```sh
+http://localhost:8080/stats
+```
+
+The response should be something like this:
+```sh
+{
+    "mutants": 7,
+    "noMutants": 3,
+    "averageMutants": 70.0
+}
